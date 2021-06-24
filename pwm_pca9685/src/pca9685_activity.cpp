@@ -16,12 +16,12 @@ PCA9685Activity::PCA9685Activity(ros::NodeHandle &_nh, ros::NodeHandle &_nh_priv
     ROS_INFO("initializing");
     nh_priv.param("device", param_device, (std::string)"/dev/i2c-1");
     nh_priv.param("address", param_address, (int)PCA9685_ADDRESS);
-    nh_priv.param("frequency", param_frequency, (int)1600);
+    nh_priv.param("frequency", param_frequency, (int)50);
     nh_priv.param("frame_id", param_frame_id, (std::string)"imu");
     
     // timeouts in milliseconds per channel
     nh_priv.param("timeout", param_timeout, std::vector<int>{
-        5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000,
+        9000, 1000, 5000, 5000, 5000, 5000, 5000, 5000,
         5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000
     });
 
@@ -39,7 +39,7 @@ PCA9685Activity::PCA9685Activity(ros::NodeHandle &_nh, ros::NodeHandle &_nh_priv
 
     // default pwm value per channel after timeout is reached
     nh_priv.param("timeout_value", param_timeout_value, std::vector<int>{
-        0, 0, 0, 0, 0, 0, 0, 0,
+        4301, 4749, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0
     });
 
